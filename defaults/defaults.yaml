@@ -1,6 +1,17 @@
 ---
 
-configuration_dir: ~/
+configuration_dir: /home/ec2-user/devopsguys
+job_definitions: "{{ configuration_dir }}/jjb"
 username: admin
+password: password
+app_name: drupal1
+drupal_version: latest
+jenkins_container: phinexus/jjb
+dns: 172.17.0.1  
+host: 10.182.168.253
 drupal_port: 8080
-local_port_drupal: 8080
+local_drupal_port: 8080
+jenkins_port: 8081
+jenkins_local_port: 8081
+drupal_db: mysql
+[ec2-user@ip-10-182-1

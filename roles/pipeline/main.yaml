@@ -1,4 +1,3 @@
-
 ---
 
 - name: include common variables
@@ -17,9 +16,6 @@
 - name: start containers
   command: docker build -t {{ app_name }}/drupal ~/drupal
 - name: start jenkins-jobs builder
+  command: docker run --dns={{ dns }} -p {{ local_jenkins_port }}:{{ jenkins_port }}  -e JENKINS_URL=http://{{ host }} -rm -v "$(pwd)":/opt/src -it pp2l/jenkins-configure
 - name: copy tempate
-- copy: src=~/template dest=~/jenkins-jobs/jobs/drupal_build.xml owner=jenkins grup=nogroup mode=0777 
-- command: docker run --dns={{ dns }} -e JENKINS_URL=http://{{ host }} -v "$(pwd)":/opt/src -it pp2l/jenkins-configure
-- name: start drupal
-- command: docker run -p {{ drupal_port }}:{{ local_port_drupal }} {{ app_name }}/drupal 
-
+  shell: mv ~/template ~/jenkins-jobs/jobs/
