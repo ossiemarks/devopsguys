@@ -2,3 +2,5 @@
 
 configuration_dir: ~/
 username: admin
+drupal_port: 8080
+local_port_drupal: 8080

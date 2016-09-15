@@ -19,4 +19,7 @@
 - name: start jenkins-jobs builder
   command: docker run --dns={{ dns }} -e JENKINS_URL=http://{{ host }} -v "$(pwd)":/opt/src -it pp2l/jenkins-configure
 - name: copy tempate
-  shell: mv ~/template ~/jenkins-jobs/jobs/
+- copy: src=~/template dest=~/jenkins-jobs/jobs/drupal_build.xml owner=jenkins grup=nogroup mode=0777 
+- name: start drupal
+- command: docker run -p {{ drupal_port }}:{{ local_port_drupal }} {{ app_name }}/drupal 
+
